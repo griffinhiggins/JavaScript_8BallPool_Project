@@ -12,6 +12,7 @@ Game.prototype.start = function(){
     PoolGame.mainLoop();
 
 }
+
 Game.prototype.mainLoop = function(){
     Canvas.clear();
     PoolGame.gameWorld.update();
