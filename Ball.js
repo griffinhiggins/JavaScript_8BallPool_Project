@@ -9,7 +9,9 @@ function Ball(position, color){
 }
 
 Ball.prototype.update = function(delta){
+    
     this.position.addTo(this.velocity.mult(delta));
+
     this.velocity = this.velocity.mult(0.98);
 
     if(this.velocity.length() < 5){
@@ -19,7 +21,7 @@ Ball.prototype.update = function(delta){
 }
 
 Ball.prototype.draw = function(){
-    Canvas.drawImage(sprites.whiteBall, this.position, BALL_ORIGIN);
+    Canvas.drawImage(this.sprite, this.position, BALL_ORIGIN);
 }
 
 Ball.prototype.shoot = function(power, rotation){

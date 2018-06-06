@@ -8,23 +8,26 @@ function handleMouseMove(evt){
 function handleMouseDown(evt){
     handleMouseMove(evt);
 
-    if (evt.which === 1) {
-        if (!Mouse._left.down)
-            Mouse._left.pressed = true;
-        Mouse._left.down = true;
-    } else if (evt.which === 2) {
-        if (!Mouse._middle.down)
-            Mouse._middle.pressed = true;
-        Mouse._middle.down = true;
-    } else if (evt.which === 3) {
-        if (!Mouse._right.down)
-            Mouse._right.pressed = true;
-        Mouse._right.down = true;
+    if(evt.which == 1){
+        if(!Mouse.left.down)
+            Mouse.left.pressed = true;
+        Mouse.left.down = true;
+    }
+    else if (evt.which == 2){
+        if(!Mouse.middle.down)
+            Mouse.middle.pressed = true;
+        Mouse.middle.down = true;
+    }
+    else if (evt.which == 3){
+        if(!Mouse.right.down)
+            Mouse.right.pressed = true;
+        Mouse.right.down = true;
     }
 }
 
 function handleMouseUp(evt){
     handleMouseMove(evt);
+
     if(evt.which == 1)
         Mouse.left.down = false;
     else if (evt.which == 2)
@@ -41,11 +44,12 @@ function MouseHandler(){
     this.position = new Vector2()
 
     document.onmousemove = handleMouseMove;
-    document.onmousemove = handleMouseDown;
-    document.onmousemove = handleMouseUp;
+    document.onmousedown = handleMouseDown;
+    document.onmouseup = handleMouseUp;
 }
 
 MouseHandler.prototype.reset = function(){
+    
     this.left.pressed = false;
     this.middle.pressed = false;
     this.right.pressed = false;

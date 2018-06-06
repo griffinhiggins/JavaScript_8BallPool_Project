@@ -8,7 +8,7 @@ function Stick(position, onShoot){
     this.origin = STICK_ORIGIN.copy();
     this.power = 0;
     this.onShoot = onShoot;
-    this.shot;
+    this.shot = false;
 }
 
 Stick.prototype.update = function(){
