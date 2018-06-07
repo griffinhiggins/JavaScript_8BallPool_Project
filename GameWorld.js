@@ -23,14 +23,23 @@ function GameWorld(){
 
     this.whiteBall = this.balls[this.balls.length - 1];
     this.stick = new Stick(
-        new Vector2(413, 413,),
+        new Vector2(413, 413),
         this.whiteBall.shoot.bind(this.whiteBall)
     );
 }
+GameWorld.prototype.handleCollisions = function(){
+    for(let i = 0; i < this.balls.length; i++){
+        for(let j = i + 1; j < this.balls.length; j++){
+            const firstBall = this.balls[i];
+            const secondBall = this.balls[j];
+            firstBall.collideWith(secondBall);
+        }
+    }
+}
 
 GameWorld.prototype.update = function(){
-
-    this.stick.update();
+this.stick.update();
+    this.handleCollisions();
 
     for(let i = 0; i < this.balls.length; i++){
         this.balls[i].update(DELTA);
@@ -52,5 +61,15 @@ GameWorld.prototype.draw = function(){
 }
 
 GameWorld.prototype.ballsMoving = function(){
-    return this.whiteBall.moving;
+
+    let ballsMoving = false;
+
+    for(let i = 0; i < this.balls.length; i++){
+        if(this.balls[i].moving){
+            ballsMoving = true;
+            break;
+        }
+    }
+
+    return ballsMoving;
 }
